@@ -1,11 +1,7 @@
-# provider "kubernetes" {
-#     host = module.eks.cluster_endpoint
-#     cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-# }
+provider "aws" {
+  region = var.region
+}
 
-# free tier- t2.micro 
-# ubuntu -  ami-084568db4383264d4
-# bucket name - devops-static-web36 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.31"
@@ -38,10 +34,6 @@ module "eks" {
       desired_size = 1
     }
   }
-}
-
-provider "aws" {
-  region = var.region
 }
 
 data "aws_availability_zones" "available" {}
