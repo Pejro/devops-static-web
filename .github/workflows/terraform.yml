@@ -65,6 +65,10 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve -input=false -parallelism=1 planfile
 
+      - name: Wait for EKS Cluster
+        if: steps.tfapply.outcome == 'success'
+        run: aws eks wait cluster-active --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -78,13 +82,6 @@ jobs:
         run: |
           aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
           aws sts get-caller-identity
-
-          # Debug kubeconfig
-      - name: Debug Kubeconfig
-        if: steps.getconfig.outcome == 'success'
-        run: |
-          cat ~/.kube/config
-          kubectl config get-contexts
 
       - name: Test kubectl
         run: kubectl get nodes

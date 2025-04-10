@@ -6,7 +6,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 20.31"
 
-  cluster_name                   = "devops-static-web"
+  cluster_name                   = local.cluster_name
   cluster_version                = "1.31"
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets

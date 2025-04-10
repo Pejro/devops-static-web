@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "devops-static-web36"
+    bucket = "pejro-static-web"
     key    = "state/terraform.tfstate"
     region = "us-east-1"
   }
