@@ -79,9 +79,7 @@ jobs:
       - name: Get Kube config file
         id: getconfig
         if: steps.tfapply.outcome == 'success'
-        run: |
-          aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
-          aws sts get-caller-identity
+        run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
 
       - name: Test kubectl
         run: kubectl get nodes
