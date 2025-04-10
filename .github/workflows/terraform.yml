@@ -75,7 +75,15 @@ jobs:
       - name: Get Kube config file
         id: getconfig
         if: steps.tfapply.outcome == 'success'
-        run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
+        run:
+          aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
+
+          # Debug kubeconfig
+      - name: Debug Kubeconfig
+        if: steps.getconfig.outcome == 'success'
+        run: |
+          cat ~/.kube/config
+          kubectl config get-contexts
 
       - name: Test kubectl
         run: kubectl get nodes
