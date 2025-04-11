@@ -1,0 +1,29 @@
+name: Devops-static-web deployment
+on: workflow_dispatch
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: devops-static-web
+  EKS_CLUSTER: devops-static-web
+
+jobs:
+  Testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required for SonarQube to analyze git history (e.g., for blame data)1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "temurin" # See 'Supported distributions' for available options
+          java-version: "17"
+
+    #   - name: Setup SonarQube
+    #     uses: warchant/setup-sonar-scanner@v7
+#   BUILD_AND_PUBLISH: ubuntu-latest
