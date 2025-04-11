@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: static-web
+  name: devops-static-web
 spec:
   ports:
     - port: 8080
