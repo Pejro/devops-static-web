@@ -7,4 +7,4 @@ A DevOps portfolio project deploying a static website on AWS EKS with Terraform 
 - **Tools**: GitHub Actions, Docker, Terraform, AWS EKS, Kubernetes.
 - **Run**: `terraform apply` to build EKS.
 - **Deploy**: Run `Devops-static-web deployment` workflow to deploy the web.
-- **Access**: `patrikrepasky.tech`
+- **Access**: `patrikrepasky.tech` - ONLY WORKS IF EKS IS BUILT
