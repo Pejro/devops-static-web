@@ -1,5 +1,11 @@
 name: Devops-static-web deployment
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - terraform/**
+      - .github/workflows/terraform.yml
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: devops-static-web
