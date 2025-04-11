@@ -7,8 +7,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    # - host: patrikrepasky.tech
-    - http:
+    - host: patrikrepasky.tech
+      http:
         paths:
           - path: /
             pathType: Prefix

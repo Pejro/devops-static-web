@@ -19,4 +19,4 @@ spec:
         image: {{.Values.appimage}}:{{.Values.apptag}}
         ports:
         - name: static-web-port
-          containerPort: 8080
+          containerPort: 80

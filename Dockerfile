@@ -1,4 +1,4 @@
 FROM nginx:alpine
 RUN rm -rf /usr/sahre/nginx/html/
 COPY ./web/ /usr/share/nginx/html/
-EXPOSE 8080
+EXPOSE 80
